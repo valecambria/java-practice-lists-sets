@@ -65,9 +65,23 @@ public class EjemploHashMap {
         String provincia = direccionPersona.get("provincia");
         String ciudad = direccionPersona.get("ciudad");
         String cp = direccionPersona.get("cp");
-        System.out.println("El pais de " + persona2.get("nombre") + " es " + direccionPersona.get("pais"));
+        //System.out.println("El pais de " + persona2.get("nombre") + " es " + direccionPersona.get("pais"));
 /*        persona2.forEach((llave, valor) -> {
             System.out.println(llave + " => " + valor);
         });*/
+
+        for(Map.Entry<String, Object> par: persona2.entrySet()){
+            Object valor = par.getValue();
+            if(valor instanceof Map){
+                String nom = (String) persona2.get("nombre");
+                Map<String, String> direccionMap = (Map<String, String>) valor;
+                for (Map.Entry<String,String> parDir: direccionMap.entrySet()){
+                    System.out.println(parDir.getKey() + " => " + parDir.getValue());
+                }
+            }
+            else{
+                System.out.println(par.getKey() + " => " + valor);
+            }
+        }
     }
 }
